@@ -3,4 +3,4 @@
 	url = https://github.com/PabloSorribes/com.pablosorribes.fmodhelper.git
 [submodule "Assets/com.pablosorribes.unity-audio-tools"]
 	path = Assets/com.pablosorribes.unity-audio-tools
-	url = https://github.com/PabloSorribes/com.pablosorribes.unity-audio-tools.git
+	url = ../com.pablosorribes.unity-audio-tools.git
