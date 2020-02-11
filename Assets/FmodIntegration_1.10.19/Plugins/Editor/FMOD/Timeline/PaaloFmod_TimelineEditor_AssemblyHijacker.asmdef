@@ -1,10 +1,13 @@
 {
-    "name": "FmodTimeline",
+    "name": "PaaloFmod_TimelineEditor_AssemblyHijacker",
     "references": [
-        "FmodAssemblyHijacker",
-        "Unity.Timeline"
+        "GUID:6886b622a7e1efa49b551d6a81109599",
+        "GUID:2b75e25559a6e274b8da2a48a3ecf490",
+        "GUID:0db08d6a38de3f940a17cb029cb2039e"
     ],
-    "includePlatforms": [],
+    "includePlatforms": [
+        "Editor"
+    ],
     "excludePlatforms": [],
     "allowUnsafeCode": false,
     "overrideReferences": false,

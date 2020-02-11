@@ -1,0 +1,17 @@
+{
+    "name": "PaaloFmod_Editor_AssemblyHijacker",
+    "references": [
+        "GUID:0db08d6a38de3f940a17cb029cb2039e"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
