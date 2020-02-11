@@ -1,7 +1,7 @@
 {
     "name": "PaaloFmod_Editor_AssemblyHijacker",
     "references": [
-        "GUID:0db08d6a38de3f940a17cb029cb2039e"
+        "PaaloFmod_Core_AssemblyHijacker"
     ],
     "includePlatforms": [
         "Editor"

@@ -1,8 +1,8 @@
 {
     "name": "PaaloFmod_Timeline_AssemblyHijacker",
     "references": [
-        "GUID:0db08d6a38de3f940a17cb029cb2039e",
-        "GUID:f06555f75b070af458a003d92f9efb00"
+        "PaaloFmod_Core_AssemblyHijacker",
+        "Unity.Timeline"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],
