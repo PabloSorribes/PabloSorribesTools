@@ -4,3 +4,6 @@
 [submodule "Assets/com.paalo.fmod-helper"]
 	path = Assets/com.paalo.fmod-helper
 	url = https://github.com/PabloSorribes/com.paalo.fmod-helper.git
+[submodule "Assets/com.paalo.unity-misc-tools"]
+	path = Assets/com.paalo.unity-misc-tools
+	url = https://github.com/PabloSorribes/com.paalo.unity-misc-tools.git
