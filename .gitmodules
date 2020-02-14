@@ -7,3 +7,6 @@
 [submodule "Assets/com.paalo.unity-misc-tools"]
 	path = Assets/com.paalo.unity-misc-tools
 	url = https://github.com/PabloSorribes/com.paalo.unity-misc-tools.git
+[submodule "Assets/com.paalo.package-creator-tool"]
+	path = Assets/com.paalo.package-creator-tool
+	url = https://github.com/PabloSorribes/com.paalo.package-creator-tool.git
