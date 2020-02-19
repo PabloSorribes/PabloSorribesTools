@@ -4,3 +4,6 @@
 [submodule "Assets/com.pablosorribes.unity-audio-tools"]
 	path = Assets/com.pablosorribes.unity-audio-tools
 	url = ../com.pablosorribes.unity-audio-tools.git
+[submodule "Assets/com.paalo.unity-misc-tools"]
+	path = Assets/com.paalo.unity-misc-tools
+	url = https://github.com/PabloSorribes/com.paalo.unity-misc-tools.git
