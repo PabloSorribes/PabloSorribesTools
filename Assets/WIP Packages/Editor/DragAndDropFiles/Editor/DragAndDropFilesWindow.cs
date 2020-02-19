@@ -43,7 +43,7 @@ namespace Paalo.Tools
 
 		private void OnEnable()
 		{
-			OnDragPerformed += UpdateClipsOnDragPerform;
+			//OnDragPerformed += UpdateClipsOnDragPerform;
 		}
 
 		private void UpdateClipsOnDragPerform<T>(T[] draggedObjects) where T : Object
@@ -62,7 +62,7 @@ namespace Paalo.Tools
 		private void OnGUI()
 		{
 			EditorGUILayout.Space();
-			DrawDragAndDropArea<AudioClip>(new DragAndDropAreaInfo());
+			DrawDragAndDropArea<AudioClip>(new DragAndDropAreaInfo("Audio Clips"), UpdateClipsOnDragPerform);
 			EditorGUILayout.Space();
 		}
 
@@ -72,7 +72,7 @@ namespace Paalo.Tools
 		/// <typeparam name="T">The object type you want the <see cref="OnDragPerformed"/> method to handle.</typeparam>
 		/// <param name="dragAreaInfo"></param>
 		/// <returns></returns>
-		public static void DrawDragAndDropArea<T>(DragAndDropAreaInfo dragAreaInfo) where T : UnityEngine.Object
+		public static void DrawDragAndDropArea<T>(DragAndDropAreaInfo dragAreaInfo, System.Action<T[]> OnPerformedDragCallback = null) where T : UnityEngine.Object
 		{
 			//Change color and create Drag Area
 			Color originalGUIColor = GUI.color;
@@ -102,7 +102,7 @@ namespace Paalo.Tools
 					{
 						DragAndDrop.AcceptDrag();
 						var draggedTypeObjectsArray = GetDraggedObjects<T>();
-						OnDragPerformed?.Invoke(draggedTypeObjectsArray);
+						OnPerformedDragCallback?.Invoke(draggedTypeObjectsArray);
 					}
 
 					Event.current.Use();
@@ -169,11 +169,6 @@ namespace Paalo.Tools
 
 		public Color outlineColor = Color.black;
 		public Color backgroundColor = Color.yellow;
-
-		//Creates a default class with the values set in the definition above.
-		public DragAndDropAreaInfo()
-		{
-		}
 
 		public DragAndDropAreaInfo(string draggedObjectTypeName)
 		{
