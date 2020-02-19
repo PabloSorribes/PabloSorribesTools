@@ -4,6 +4,50 @@ using UnityEngine;
 
 namespace Paalo.Tools
 {
+	public class TestWindow : EditorWindow
+	{
+		#region ToolName and SetupWindow
+		private const int menuIndexPosition = PabloSorribesToolsConstants.defaultPaaloMenuIndexPosition;     //To make the menu be at the top of the GameObject-menu and the first option in the hierarchy.
+		private const string baseMenuPath = PabloSorribesToolsConstants.defaultPaaloMenuPath;
+		private const string rightClickMenuPath = "GameObject/" + baseMenuPath + toolName;
+		private const string toolsMenuPath = "Window/" + baseMenuPath + toolName;
+		private const string toolName = "Test Window";
+
+		[MenuItem(rightClickMenuPath, false, menuIndexPosition)]
+		public static void RightClickMenu()
+		{
+			SetupWindow();
+		}
+
+		[MenuItem(toolsMenuPath, false, menuIndexPosition)]
+		public static void ToolsMenu()
+		{
+			SetupWindow();
+		}
+
+		public static void SetupWindow()
+		{
+			var window = GetWindow<TestWindow>(true, toolName, true);
+			window.minSize = new Vector2(300, 200);
+			window.maxSize = new Vector2(window.minSize.x + 100, window.minSize.y + 100);
+		}
+		#endregion ToolName and SetupWindow
+
+
+		private void OnGUI()
+		{
+			DragAndDropFilesWindow.DrawDragAndDropArea<AnimationClip>(new DragAndDropAreaInfo("Animation Clips"), Gimme);
+			DragAndDropFilesWindow.DrawDragAndDropArea<AnimationClip>(new DragAndDropAreaInfo("Hej Clips"));
+		}
+
+		private void Gimme<T>(T[] draggedObjects) where T : Object
+		{
+
+		}
+	}
+
+
+
 	public class DragAndDropFilesWindow : EditorWindow
 	{
 		#region ToolName and SetupWindow
@@ -46,7 +90,7 @@ namespace Paalo.Tools
 			//OnDragPerformed += UpdateClipsOnDragPerform;
 		}
 
-		private void UpdateClipsOnDragPerform<T>(T[] draggedObjects) where T : Object
+		private void OnDragPerformCallbackExample<T>(T[] draggedObjects) where T : Object
 		{
 			Debug.Log($"Dragged Obj Array: {draggedObjects.GetType().FullName}");
 
@@ -62,12 +106,16 @@ namespace Paalo.Tools
 		private void OnGUI()
 		{
 			EditorGUILayout.Space();
-			DrawDragAndDropArea<AudioClip>(new DragAndDropAreaInfo("Audio Clips"), UpdateClipsOnDragPerform);
+			DrawDragAndDropArea<AudioClip>(new DragAndDropAreaInfo("Audio Clips"), OnDragPerformCallbackExample);
 			EditorGUILayout.Space();
 		}
 
 		/// <summary>
-		/// Draws a Drag and Drop Area and raises the <see cref="OnDragPerformed"/>-event, which you can use use to get an array of the objects that were dragged into the area.
+		/// Draws a Drag and Drop Area and allows you to send in a method which receives an array of the objects that were dragged into the area.
+		/// <para></para>
+		/// The caller method needs to receive a generic type "T" and then cast it to its desired type itself.
+		/// <para></para>
+		/// Example implementation in OnGUI: <see cref="OnDragPerformCallbackExample{T}(T[])"/>
 		/// </summary>
 		/// <typeparam name="T">The object type you want the <see cref="OnDragPerformed"/> method to handle.</typeparam>
 		/// <param name="dragAreaInfo"></param>
@@ -124,6 +172,10 @@ namespace Paalo.Tools
 				//A "DefaultAsset" is a folder in the Unity Editor.
 				if (dragged is DefaultAsset)
 				{
+					//TODO: Allow for different types / match 'T' against a Dictionary with the allowed filters (see FindDirectoryOfScript.cs for more info on filters)
+					//OR: Load the assets from the dragged folder, but only get the ones of the correct type using 'draggedAsset.GetType().FullName'
+					//draggedAsset.GetType().FullName
+
 					var assetPaths = AssetDatabase.FindAssets("t:AudioClip", DragAndDrop.paths);
 					foreach (var assetPath in assetPaths)
 					{
