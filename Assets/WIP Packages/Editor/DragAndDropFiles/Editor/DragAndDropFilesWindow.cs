@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.IO;
 using UnityEditor;
 using UnityEngine;
 
@@ -37,12 +38,11 @@ namespace Paalo.Tools
 		private void OnGUI()
 		{
 			DragAndDropFilesWindow.DrawDragAndDropArea<AnimationClip>(new DragAndDropAreaInfo("Animation Clips"), Gimme);
-			DragAndDropFilesWindow.DrawDragAndDropArea<AnimationClip>(new DragAndDropAreaInfo("Hej Clips"));
 		}
 
 		private void Gimme<T>(T[] draggedObjects) where T : Object
 		{
-
+			var myObjects = draggedObjects as Sprite;
 		}
 	}
 
@@ -79,18 +79,16 @@ namespace Paalo.Tools
 
 		#region Tool-specific Variables
 		public AudioClip[] audioClips = null;
-		/// <summary>
-		/// Use this action to get an array of the objects that were dragged into the area.
-		/// </summary>
-		public static event System.Action<UnityEngine.Object[]> OnDragPerformed;
 		#endregion
 
-		private void OnEnable()
+		private void OnGUI()
 		{
-			//OnDragPerformed += UpdateClipsOnDragPerform;
+			EditorGUILayout.Space();
+			DrawDragAndDropArea<AudioClip>(new DragAndDropAreaInfo("Audio Clips"), OnDragAndDropPerformed_CallbackExample);
+			EditorGUILayout.Space();
 		}
 
-		private void OnDragPerformCallbackExample<T>(T[] draggedObjects) where T : Object
+		private void OnDragAndDropPerformed_CallbackExample<T>(T[] draggedObjects) where T : Object
 		{
 			Debug.Log($"Dragged Obj Array: {draggedObjects.GetType().FullName}");
 
@@ -99,15 +97,8 @@ namespace Paalo.Tools
 				Debug.Log($"Dragged Obj: {draggedObj.GetType().FullName}");
 			}
 
-			audioClips = draggedObjects as AudioClip[];
+			var audioClips = draggedObjects as AudioClip[];
 			Debug.Log("Array length: " + audioClips.Length);
-		}
-
-		private void OnGUI()
-		{
-			EditorGUILayout.Space();
-			DrawDragAndDropArea<AudioClip>(new DragAndDropAreaInfo("Audio Clips"), OnDragPerformCallbackExample);
-			EditorGUILayout.Space();
 		}
 
 		/// <summary>
@@ -115,9 +106,9 @@ namespace Paalo.Tools
 		/// <para></para>
 		/// The caller method needs to receive a generic type "T" and then cast it to its desired type itself.
 		/// <para></para>
-		/// Example implementation in OnGUI: <see cref="OnDragPerformCallbackExample{T}(T[])"/>
+		/// Example implementation in OnGUI: <see cref="OnDragAndDropPerformed_CallbackExample{T}(T[])"/>
 		/// </summary>
-		/// <typeparam name="T">The object type you want the <see cref="OnDragPerformed"/> method to handle.</typeparam>
+		/// <typeparam name="T">The object type you want the '<paramref name="OnPerformedDragCallback"/>'-method to handle.</typeparam>
 		/// <param name="dragAreaInfo"></param>
 		/// <returns></returns>
 		public static void DrawDragAndDropArea<T>(DragAndDropAreaInfo dragAreaInfo, System.Action<T[]> OnPerformedDragCallback = null) where T : UnityEngine.Object
@@ -176,18 +167,29 @@ namespace Paalo.Tools
 					//OR: Load the assets from the dragged folder, but only get the ones of the correct type using 'draggedAsset.GetType().FullName'
 					//draggedAsset.GetType().FullName
 
-					var assetPaths = AssetDatabase.FindAssets("t:AudioClip", DragAndDrop.paths);
-					foreach (var assetPath in assetPaths)
-					{
-						draggedAsset = AssetDatabase.LoadAssetAtPath<T>(AssetDatabase.GUIDToAssetPath(assetPath));
-						if (draggedAsset == null)
-						{
-							continue;
-						}
+					//string folderPath = AssetDatabase.GetAssetPath(dragged);
+					//Debug.Log($"Folder Path: '{folderPath}'");
 
-						Debug.Log($"Default Asset Dragged: {draggedAsset.name}");
-						draggedTypeObjects.Add(draggedAsset as T);
-					}
+					//var assetsInDraggedFolders = GetAllAssetsOfTypeInDirectory<T>(folderPath);
+
+					//foreach (var asset in assetsInDraggedFolders)
+					//{
+
+					//	draggedTypeObjects.Add(asset as T);
+					//}
+
+					//var assetPaths = AssetDatabase.FindAssets("t:AudioClip", DragAndDrop.paths);
+					//foreach (var assetPath in assetPaths)
+					//{
+					//	draggedAsset = AssetDatabase.LoadAssetAtPath<T>(AssetDatabase.GUIDToAssetPath(assetPath));
+					//	if (draggedAsset == null)
+					//	{
+					//		continue;
+					//	}
+
+					//	Debug.Log($"Default Asset Dragged: {draggedAsset.name}");
+					//	draggedTypeObjects.Add(draggedAsset as T);
+					//}
 					continue;
 				}
 
