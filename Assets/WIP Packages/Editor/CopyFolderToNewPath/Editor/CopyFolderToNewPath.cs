@@ -7,24 +7,16 @@ namespace Paalo.Tools
 {
 	public class CopyFolderToNewPath : EditorWindow
 	{
-		private const int menuIndexPosition = CurrentPackageConstants.paaloMenuIndexPosition;     //To make the menu be at the top of the GameObject-menu and the first option in the hierarchy.
-		private const string baseMenuPath = CurrentPackageConstants.paaloMenuPath;
-		private const string rightClickMenuPath = "GameObject/" + baseMenuPath + toolName;
-		private const string toolsMenuPath = "Window/" + baseMenuPath + toolName;
+		#region ToolName and SetupWindow
 		private const string toolName = "Copy Folder To New Path";
 
-		public string startPath = "Assets";
-		public string newDestinationSubFolderName = "CopiedFolder";
-		string sourcePath = "";
-		string destinationPath = "";
-
-		[MenuItem(rightClickMenuPath, false, menuIndexPosition)]
+		[MenuItem(CurrentPackageConstants.packageRightClickMenuPath + toolName, false, CurrentPackageConstants.packageMenuIndexPosition)]
 		public static void RightClickMenu()
 		{
 			SetupWindow();
 		}
 
-		[MenuItem(toolsMenuPath, false, menuIndexPosition)]
+		[MenuItem(CurrentPackageConstants.packageWindowMenuPath + toolName, false, CurrentPackageConstants.packageMenuIndexPosition)]
 		public static void ToolsMenu()
 		{
 			SetupWindow();
@@ -36,6 +28,12 @@ namespace Paalo.Tools
 			window.minSize = new Vector2(300, 200);
 			window.maxSize = new Vector2(window.minSize.x + 100, window.minSize.y + 100);
 		}
+		#endregion ToolName and SetupWindow
+
+		public string startPath = "Assets";
+		public string newDestinationSubFolderName = "CopiedFolder";
+		string sourcePath = "";
+		string destinationPath = "";
 
 		private void OnGUI()
 		{
