@@ -10,3 +10,6 @@
 [submodule "Assets/com.paalo.unity-audio-tools"]
 	path = Assets/com.paalo.unity-audio-tools
 	url = ../com.paalo.unity-audio-tools.git
+[submodule "Assets/com.paalo.package-creator-tool"]
+	path = Assets/com.paalo.package-creator-tool
+	url = ../com.paalo.package-creator-tool.git
