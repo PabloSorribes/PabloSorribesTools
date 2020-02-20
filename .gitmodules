@@ -13,3 +13,6 @@
 [submodule "Assets/com.paalo.package-creator-tool"]
 	path = Assets/com.paalo.package-creator-tool
 	url = ../com.paalo.package-creator-tool.git
+[submodule "Assets/com.paalo.fmod-helper"]
+	path = Assets/com.paalo.fmod-helper
+	url = ../com.paalo.fmod-helper.git
