@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Paalo
+namespace Paalo.WIP
 {
 	public class CurveBehaviour : MonoBehaviour
 	{

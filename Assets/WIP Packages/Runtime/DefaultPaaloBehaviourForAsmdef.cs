@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Paalo
+namespace Paalo.WIP
 {
 	public class DefaultPaaloBehaviourForAsmdef : MonoBehaviour 
 	{

@@ -1,9 +1,8 @@
 ﻿using System.Collections.Generic;
-using System.IO;
 using UnityEditor;
 using UnityEngine;
 
-namespace Paalo.Tools
+namespace Paalo.WIP.EditorTools
 {
 	public class TestWindow : EditorWindow
 	{

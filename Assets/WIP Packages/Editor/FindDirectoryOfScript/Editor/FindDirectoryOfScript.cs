@@ -1,7 +1,7 @@
 ﻿using UnityEditor;
 using UnityEngine;
 
-namespace Paalo.Tools
+namespace Paalo.WIP.EditorTools
 {
 	public class FindDirectoryOfScript : EditorWindow
 	{

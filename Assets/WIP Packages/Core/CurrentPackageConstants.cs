@@ -1,4 +1,4 @@
-﻿namespace Paalo
+﻿namespace Paalo.WIP
 {
 	public class CurrentPackageConstants
 	{
