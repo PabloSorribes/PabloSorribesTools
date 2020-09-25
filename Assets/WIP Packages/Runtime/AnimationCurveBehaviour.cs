@@ -2,7 +2,7 @@
 
 namespace Paalo.WIP
 {
-	public class CurveBehaviour : MonoBehaviour
+	public class AnimationCurveBehaviour : MonoBehaviour
 	{
 		public float speed = 2f;
 
