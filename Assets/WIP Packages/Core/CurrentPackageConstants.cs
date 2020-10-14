@@ -24,6 +24,12 @@
 		/// </summary>
 		public const string packageWindowMenuPath = "Window/" + paaloMenuPath + currentPackageName; //+ toolName;
 
+		/// <summary>
+		/// Add the toolName after this path eg:
+		/// <para></para>
+		/// menuPath = <see cref="CurrentPackageConstants.packageWindowMenuPath"/> + toolName;
+		/// </summary>
+		public const string packageAssetsMenuPath = "Assets/" + paaloMenuPath + currentPackageName; //+ toolName;
 
 		//Example Implementation:
 		#region ToolName and SetupWindow
