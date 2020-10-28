@@ -1,4 +1,5 @@
 ﻿//Source: http://answers.unity.com/answers/1475793/view.html
+//UnityEditor.ProjectBrowser.cs: https://github.com/Unity-Technologies/UnityCsReference/blob/master/Editor/Mono/ProjectBrowser.cs
 
 using System;
 using System.Reflection;
